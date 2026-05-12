@@ -1,33 +1,19 @@
-# 1. Hands-on lab using the AMD AI Workbench
+# Team challenge: Deploy and Customize AMD Solution Blueprints
 
-This guide walks participants through using the **AMD Enterprise AI Suite** on a pre-provisioned environment. The environment has already been installed — you will begin directly with AI model deployment on AMD AI Workbench.
+In this session we will deploy and customize an AI application using the AMD Solution Blueprints as a reference.
 
-In this hands-on lab session we will complete the following tasks:
+## Prerequisites
 
-- How to deploy an AI Model (AIM) and use the AMD AI Workbench interface to interact with it
-- How to create and access a Jupyter Lab workspace within AMD AI Workbench
-- How to connect to the deployed AIM from the AI workspace via the OpenAI-compatible API
-- Experiment with the deployed AIM and AI workspace to test model capabilities
+- AMD Developer Cloud access (provided for your lab session)
+- Basic command-line and coding knowledge
+- Shell access (PowerShell, bash, zsh) for running commands
+- WSL environment (for Windows laptops)
+- kubectl installed and in PATH
+- Helm installed
+- [kubeconfig file](./dublin_digital_ocean) in order to connect to the Kubernetes cluster
 
-## Accessing the Environment
-
-Your lab URL and credentials are provided in the **course handout** distributed at the start of the session.
-
-1. Navigate to the AIWB URL.
-
-2. Log in with the EAI Suite credentials. Ensure you are working within the project you created in the previous section.
-
-------------------------------------------------------------------------
-
-## Deploy an AI Model (AIM)
-
-![AI Workbench — AIM catalog](../images/04-workbench/model-catalog-name-rm.png)
-
-1. Navigate to the **Models** tab to access the AIM catalog
-2. Select **GPT OSS 20B** model in the AIM catalog (you need to scroll down on the page)
-3. Select **Deploy**. Use the default settings.
-
-![Deploy AIM panel with Performance metric dropdown](../images/04-workbench/03-deploy-config-panel.png)
+## User guide
+For this session, please follow the documentation here: [Deploy and Customize AMD Solution Blueprints](https://rocm.blogs.amd.com/artificial-intelligence/custom-blueprint/README.html)
 
 4. Click **Deploy**. A confirmation message will appear indicating the workload has started.
 

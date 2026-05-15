@@ -1,6 +1,6 @@
 # 1. Hands-on lab using the AMD AI Workbench
 
-This guide walks participants through using the **AMD Enterprise AI Suite** on a pre-provisioned environment. The environment has already been installed — you will begin directly with AI model deployment on AMD AI Workbench.
+This guide walks participants through using the **AMD Enterprise AI SW** on a pre-provisioned environment. The environment has already been installed — you will begin directly with AI model deployment on AMD AI Workbench.
 
 In this hands-on lab session we will complete the following tasks:
 
@@ -15,19 +15,19 @@ Your lab URL and credentials are provided in the **course handout** distributed 
 
 1. Navigate to the AIWB URL.
 
-2. Log in with the EAI Suite credentials. Ensure you are working within the project you created in the previous section.
+2. Log in with the EAI SW credentials. Ensure you are working within the project you created in the previous section.
 
 ------------------------------------------------------------------------
 
 ## Deploy an AI Model (AIM)
 
-![AI Workbench — AIM catalog](../images/04-workbench/model-catalog-name-rm.png)
+![AI Workbench — AIM catalog](./images/04-workbench/model-catalog-name-rm.png)
 
 1. Navigate to the **Models** tab to access the AIM catalog
 2. Select **GPT OSS 20B** model in the AIM catalog (you need to scroll down on the page)
 3. Select **Deploy**. Use the default settings.
 
-![Deploy AIM panel with Performance metric dropdown](../images/04-workbench/03-deploy-config-panel.png)
+![Deploy AIM panel with Performance metric dropdown](./images/04-workbench/03-deploy-config-panel.png)
 
 4. Click **Deploy**. A confirmation message will appear indicating the workload has started.
 
@@ -57,11 +57,11 @@ To interact with your model, follow these steps:
 
 2. Select Chat with model, or open the Chat page directly from the main navigation menu and then select your model
 
-3. Enter your prompt in the chat box and submit it to the model. For example, you can submit a prompt like, *“Create a 3-day travel itinerary for a family visiting Dublin, focusing on historical sites and kid-friendly activities. Organize the output by day, time, and location.”*
+3. Enter your prompt in the chat box and submit it to the model. For example, you can submit a prompt like, *“Create a 3-day travel itinerary for a family visiting Amsterdam, focusing on historical sites and kid-friendly activities. Organize the output by day, time, and location.”*
 
 4. Review the response in the chat window and refine your prompt or parameters as needed to achieve the desired result (see Figure below)
 
-![Chat with the model directly in the Workbench interface.](../images/04-workbench/workbench_chat.png)
+![Chat with the model directly in the Workbench interface.](./images/04-workbench/workbench_chat.png)
 
 The Chat interface also includes a **Compare** mode. This feature sends the same prompt to two models (or the same model with different settings) and displays their responses side‑by‑side, making it easy to evaluate differences in responses, accuracy, tone, and reasoning. Typical use cases include comparing a base model against its fine-tuned version or testing how different system prompts and generation parameters affect a single model's behavior.
 
@@ -71,7 +71,7 @@ Let's demonstrate this feature by comparing our deployed model against itself, b
 2. In the selection box ("Select model"), choose your deployed model
 3. For the model on the right, open its settings panel and change the **System Prompt** to the following:
     - *"You are a helpful AI model that answers in a very cheerful tone with long answers"*
-4. Enter the prompt *"Create a 3-day travel itinerary for a family visiting Dublin, focusing on historical sites and kid-friendly activities. Organize the output by day, time, and location."* and submit it
+4. Enter the prompt *"Create a 3-day travel itinerary for a family visiting Amsterdam, focusing on historical sites and kid-friendly activities. Organize the output by day, time, and location."* and submit it
 5. Observe how the two models provide different responses with one delivering a standard factual answer and the other adopting a cheerful persona
 
 ## Interact with the model via Jupyter Lab workspace
@@ -96,7 +96,7 @@ In this lab we will deploy a Jupyter Lab workspace. Navigate to the Workspaces p
 
       * RAM: 32 GB
 
-![Customize resource allocation](../images/04-workbench/workspace-deploy-custom-resource-allocation.png)
+![Customize resource allocation](./images/04-workbench/workspace-deploy-custom-resource-allocation.png)
 
 
 3. Once you have finalized the configuration, launch the environment by clicking Quick deploy
@@ -117,7 +117,7 @@ To connect to your deployed model, you first need to retrieve its unique API end
 
 This will open a dialog window displaying the essential connection details, specifically the External URL (for connections outside the platform) and the Internal URL (for connections inside the platform, such as a workspace). See Figure below for reference.
 
-![Model connection details](../images/04-workbench/workbench_aim_connect.png)
+![Model connection details](./images/04-workbench/workbench_aim_connect.png)
 
 The window also provides sample code for querying the model in cURL, Python and Javascript format. We will use the Python snippet to connect from our Jupyter Lan notebook:
 
@@ -173,7 +173,7 @@ To monitor your inference endpoint, open the Dashboard page, select the workload
 
 The details’ view lets you inspect and review inference metrics over time such as time‑to‑first‑token, request count, tokens generated and other indicators. It also shows workload metadata such as resource utilization, AIM build/version, and configuration settings.
 
-![Monitor the status of your workload](../images/04-workbench/workbench_aim_monitor_details.png)
+![Monitor the status of your workload](./images/04-workbench/workbench_aim_monitor_details.png)
 
 ## Experimentation within the workspace
 

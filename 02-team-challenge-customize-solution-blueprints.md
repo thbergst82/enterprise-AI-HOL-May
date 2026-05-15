@@ -1,6 +1,6 @@
 # Team challenge: Deploy and Customize AMD Solution Blueprints
 
-In this session we will deploy and customize an AI application using the AMD Solution Blueprints as a reference.
+In this session we will deploy and customize AI applications using the AMD Solution Blueprints as a reference.
 
 All workloads run on the AMD Enterprise AI cluster — your laptop is only the kubectl client.
 

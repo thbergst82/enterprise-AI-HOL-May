@@ -395,6 +395,83 @@ The answer is now accurate, as the model has received the domain specific inform
 Model answer:
 The 2024 sales numbers for Product ID 456 are SEK 503 million
 ```
+
+## OPTIONAL: Performance validation
+
+In this exercise we run a script that generates requests to the model endpoint with different parameters (token size, number of concurrent users) and observe the inference performance through studying some key metrics.
+
+Steps:
+1. Deploy and launch VS Code workspace (select custom resources with 1 GPU, 8 CPU cores, 32GB memory)
+2. Open a terminal in VS Code
+3. Install the uv tool
+```
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+4. Add uv to your PATH. Use the directory path for your environment.
+```
+source /workload/xxx/.vscode-server/../bin/env
+```
+5. Install vllm
+```
+uv pip install vllm --extra-index-url https://wheels.vllm.ai/rocm/7.1.1
+```
+
+6. Open a new file in VS Code and copy paste following code. Save file as **performance_validation.sh**, i.e., as a shell script with **.sh** extension.
+```
+#!/usr/bin/env bash
+
+set -eu
+
+# model name
+VLLM_BENCH_MODEL="openai/gpt-oss-20b"
+
+# model endpoint (internal cluster)
+BASE_URL=YOUR_INTERNAL_URL
+# output dir
+VLLM_BENCH_OUTPUT_DIR="${VLLM_BENCH_OUTPUT_DIR:-./bench_results/$(date +%Y%m%d-%H%M%S)}"
+mkdir -p "$VLLM_BENCH_OUTPUT_DIR"
+
+# configurations to iterate over
+ISL_OSL=("128 2048" "256 256")
+
+MAX_CONCURRENCIES=(4 16)
+
+for io in "${ISL_OSL[@]}"; do
+    read -r input_len output_len <<<"$io"
+    for concurrency in "${MAX_CONCURRENCIES[@]}"; do
+      echo "Running: input=$input_len output=$output_len concurrency=$concurrency"
+      vllm bench serve \
+        --base-url "$BASE_URL" \
+        --model "$VLLM_BENCH_MODEL" \
+        --dataset-name random \
+        --random-input-len "$input_len" \
+        --random-output-len "$output_len" \
+        --num-prompts $(( concurrency * 10 )) \
+        --max-concurrency "$concurrency" \
+        --percentile-metrics "ttft,tpot,itl,e2el" \
+        --metric-percentiles "75,90,99" \
+        --ignore-eos \
+        --save-result \
+        --result-dir "$VLLM_BENCH_OUTPUT_DIR" \
+        --label "$input_len-$output_len-$concurrency"
+        # --tokenizer_mode mistral # needed for some mistral models
+    done
+done
+
+echo "Results saved to $VLLM_BENCH_OUTPUT_DIR"
+```
+7. Make script executable
+```
+chmod u+x AIM_validation.sh
+```
+
+8. Run the script (start the performance validation)
+./performance_validation.sh
+
+9. Observe results and key metrics
+
+Question: How did the different token size and number of concurrent users impact the results?
+
 ## Summary
 
 In this hands-on lab session, you have completed the practical steps for deploying and managing AI workloads using AMD AI Workbench. We began by deploying an AMD Inference Microservice (AIM) for optimized inference, verifying its functionality directly through the Chat UI. Following this, we deployed a workspace to facilitate hands-on experimentation with the AIM inference endpoint within the platform.

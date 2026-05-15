@@ -13,7 +13,7 @@ All workloads run on the AMD Enterprise AI cluster — your laptop is only the k
 - kubectl installed and in PATH
 - kubectl “oidc-login” plugin installed. Users authenticate to the Kubernetes cluster using OpenID Connect (OIDC).
 - Helm installed
-- [kubeconfig file](./dublin_digital_ocean) saved in your workstation's home folder. Typically this is saved under ~/.kube/config, you then need to set your KUBECONFIG environment variable to point to this location.
+- [kubeconfig file](./kubeconfig) saved in your workstation's home folder. Typically this is saved under ~/.kube/config, you then need to set your KUBECONFIG environment variable to point to this location.
 
 ## User guide
 For this session, please follow the documentation here: [Deploy and Customize AMD Solution Blueprints](https://rocm.blogs.amd.com/artificial-intelligence/custom-blueprint/README.html)
